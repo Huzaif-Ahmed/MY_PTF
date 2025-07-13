@@ -22,22 +22,30 @@ export default function App() {
 
   if (!isDesktop) {
     return (
-      <div
-        style={{
-          width: '90vw',
-          height: '100vh',
-          backgroundColor: '#111',
-          color: '#fff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '1.5rem',
-          textAlign: 'center',
-          padding: '10rem',
-          marginRight: '10rem',
-        }}
-      >
-        Please open this portfolio on a wider screen like a desktop or laptop for the best experience.
+      <div style={{
+            width: '100vw',
+            height: '100vh',
+            backgroundColor: '#111',
+            
+            
+          }}>
+        <div
+          style={{
+            
+            height: '100vh',
+            backgroundColor: '#111',
+            color: '#fff',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '1.5rem',
+            textAlign: 'center',
+            
+          }}
+        >
+          Please open this portfolio on a wider screen like a desktop or laptop for the best experience.
+        </div>
+
       </div>
     );
   }
