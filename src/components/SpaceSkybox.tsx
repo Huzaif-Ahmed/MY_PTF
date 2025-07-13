@@ -5,6 +5,7 @@ import * as THREE from 'three';
 export function SpaceSkybox() {
   const { scene } = useThree();
   const [cubeTexture, setCubeTexture] = useState<THREE.CubeTexture | null>(null);
+  console.log(cubeTexture)
 
   useEffect(() => {
     const loader = new THREE.CubeTextureLoader();

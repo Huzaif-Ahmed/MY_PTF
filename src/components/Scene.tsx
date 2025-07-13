@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
@@ -81,7 +81,7 @@ export function Scene(
     prevTargetRef.current = targetSphere;
   }, [targetSphere]);
 
-  useFrame((state) => {
+  useFrame(() => {
     if (targetSphere && mainCamera.current && panningCamera.current) {
       if (clickmesh) {
         const desiredPosition = mainCamera.current.position.clone();
