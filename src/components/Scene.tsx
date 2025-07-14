@@ -15,6 +15,8 @@ type SceneProps = {
   setTargetSphere: (mesh: THREE.Mesh | null) => void;
   clickmesh: boolean;
   setClickmesh: (value: boolean) => void;
+  setindex: (index: number) => void;
+  index: number;
 };
 
 export function Scene(
@@ -23,11 +25,12 @@ export function Scene(
     targetSphere,
     setTargetSphere,
     clickmesh,
-    setClickmesh
+    setClickmesh,
+    setindex,
+    index
   }: SceneProps
 ) {
-  // const [targetSphere, setTargetSphere] = useState<THREE.Mesh | null>(null);
-  // const [clickmesh, setClickmesh] = useState(false);
+
 
   const mainCamera = useRef<THREE.PerspectiveCamera>(null);
   const panningCamera = useRef<THREE.PerspectiveCamera>(null);
@@ -82,6 +85,9 @@ export function Scene(
   }, [targetSphere]);
 
   useFrame(() => {
+    //console.log camera position
+
+
     if (targetSphere && mainCamera.current && panningCamera.current) {
       if (clickmesh) {
         const desiredPosition = mainCamera.current.position.clone();
@@ -92,15 +98,22 @@ export function Scene(
         panningCamera.current.position.lerp(desiredPosition, 0.04);
         currentLookAtRef.current.lerp(desiredLookAt, 0.04);
         panningCamera.current.lookAt(currentLookAtRef.current);
+        if (index !== -1) {
+          setindex(-1); // Only reset index if needed
+        }
 
         if (panningCamera.current.position.distanceTo(desiredPosition) < 0.1) {
           setTargetSphere(null);
           setClickmesh(false);
+          if (index !== -1) {
+              setindex(-1); // Only reset index if needed
+              }
         }
       } else {
-        const index = sphereRefs.current.indexOf(targetSphere);
-        if (index !== -1) {
-          const sphereRadius = sphereParams.radii[index];
+        const ind = sphereRefs.current.indexOf(targetSphere);
+        setindex(ind);
+        if (ind !== -1) {
+          const sphereRadius = sphereParams.radii[ind];
           const fov = mainCamera.current.fov;
           const distanceMultiplier = 3.5;
           const cameraDistance = (sphereRadius * distanceMultiplier) / Math.tan(THREE.MathUtils.degToRad(fov) / 2);
@@ -126,7 +139,7 @@ export function Scene(
 
           currentLookAtRef.current.lerp(desiredLookAt, 0.04);
           panningCamera.current.lookAt(currentLookAtRef.current);
-          
+
         }
       }
     }
@@ -159,6 +172,7 @@ export function Scene(
         params={sphereParams}
         sphereRefs={sphereRefs}
         onSphereClick={setTargetSphere}
+
       />
 
       <DeformablePlane

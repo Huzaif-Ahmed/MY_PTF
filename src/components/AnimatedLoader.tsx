@@ -12,7 +12,7 @@ export function AnimatedLoader({ onFinish }: { onFinish: () => void }) {
         setShowLoader(false);
         onFinish();
       }
-    }, 2500); // ⏱️ Minimum 2.5 seconds delay
+    }, 2500); 
 
     return () => clearTimeout(timeout);
   }, [progress, onFinish]);

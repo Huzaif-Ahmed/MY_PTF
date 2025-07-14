@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 export function SpaceSkybox() {
   const { scene } = useThree();
-  const [cubeTexture, setCubeTexture] = useState<THREE.CubeTexture | null>(null);
-  console.log(cubeTexture)
+  // const [cubeTexture, setCubeTexture] = useState<THREE.CubeTexture | null>(null);
+  // console.log(cubeTexture)
 
   useEffect(() => {
     const loader = new THREE.CubeTextureLoader();
@@ -18,7 +18,7 @@ export function SpaceSkybox() {
       '/SpaceTextures/nz.jpg',
     ], () => {
       scene.background = texture;
-      setCubeTexture(texture);
+      // setCubeTexture(texture);
     });
   }, [scene]);
 

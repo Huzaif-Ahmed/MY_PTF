@@ -17,6 +17,7 @@ interface Props {
   };
   sphereRefs: React.MutableRefObject<THREE.Mesh[]>;
   onSphereClick?: (mesh: THREE.Mesh) => void;
+ 
 }
 
 export function Spheres({ params, sphereRefs, onSphereClick }: Props) {
@@ -44,6 +45,7 @@ export function Spheres({ params, sphereRefs, onSphereClick }: Props) {
             e.stopPropagation();
             if (onSphereClick && sphereRefs.current[i]) {
               onSphereClick(sphereRefs.current[i]);
+              
             }
           }}
           onPointerOver={() => {
