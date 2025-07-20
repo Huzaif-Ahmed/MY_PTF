@@ -2,10 +2,81 @@
 import { Canvas } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Scene } from './components/Scene';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Html, useProgress } from '@react-three/drei'; // Import Html
 
-import './App.css'; // Import your CSS styles
+import './App.css';
+
+// Custom loader component inside the Canvas
+function CanvasLoader() {
+  const { progress } = useProgress();
+
+  return (
+    <Html center>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backdropFilter: 'blur(6px)',
+        background: 'rgba(23, 23, 34, 0.75)',
+        padding: '2rem 3rem',
+        borderRadius: '20px',
+        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)',
+        gap: '1.5rem'
+      }}>
+        {/* SVG Animated Circular Progress */}
+        <svg width="80" height="80" viewBox="0 0 80 80" style={{ marginBottom: '1rem' }}>
+          <circle
+            cx="40"
+            cy="40"
+            r="35"
+            stroke="#3535fd22"
+            strokeWidth="7"
+            fill="none"
+          />
+          <circle
+            cx="40"
+            cy="40"
+            r="35"
+            stroke="#45f2fd"
+            strokeWidth="7"
+            fill="none"
+            strokeDasharray={2 * Math.PI * 35}
+            strokeDashoffset={2 * Math.PI * 35 * (1 - progress / 100)}
+            style={{
+              transition: 'stroke-dashoffset 0.5s ease',
+              filter: 'drop-shadow(0 0 6px #45f2fd66)'
+            }}
+            strokeLinecap="round"
+          />
+        </svg>
+
+        {/* Percentage Text */}
+        <div style={{
+          color: '#FFFFFF',
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          letterSpacing: '2px',
+          textShadow: '0 2px 4px #1117',
+        }}>
+          {`Loading ${Math.floor(progress)}%`}
+        </div>
+
+        {/* (Optional) Subtext or animation */}
+        <div style={{
+          marginTop: '0.5rem',
+          fontSize: '1rem',
+          color: '#d3eafd',
+          fontStyle: 'italic',
+          opacity: 0.7,
+        }}>
+          Preparing your experience...
+        </div>
+      </div>
+    </Html>
+  );
+}
 
 export default function App() {
   const [clickmesh, setClickmesh] = useState<boolean>(false);
@@ -15,19 +86,18 @@ export default function App() {
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 1024); // Use any width breakpoint you want
+      setIsDesktop(window.innerWidth >= 1024);
     };
 
-    checkScreenSize(); // Initial check
-    window.addEventListener('resize', checkScreenSize); // Listen for resize
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
 
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+  
   useEffect(() => {
     if (targetSphere) {
-      // console.log('Target sphere set:', targetSphere);
-      console.log("Modal index:", index); // Place this right before your modal JSX
-
+      console.log("Modal index:", index);
     }
   }, [index, targetSphere]);
 
@@ -37,26 +107,19 @@ export default function App() {
         width: '100vw',
         height: '100vh',
         backgroundColor: '#111',
-
-
       }}>
-        <div
-          style={{
-
-            height: '100vh',
-            backgroundColor: '#111',
-            color: '#fff',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '1.5rem',
-            textAlign: 'center',
-
-          }}
-        >
+        <div style={{
+          height: '100vh',
+          backgroundColor: '#111',
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '1.5rem',
+          textAlign: 'center',
+        }}>
           Please open this portfolio on a wider screen like a desktop or laptop for the best experience.
         </div>
-
       </div>
     );
   }
@@ -68,7 +131,6 @@ export default function App() {
         onPointerMissed={() => {
           console.log('Missed click');
           setClickmesh(true);
-          // setIndex(-1);
         }}
         gl={{
           preserveDrawingBuffer: true,
@@ -76,26 +138,25 @@ export default function App() {
         }}
         dpr={1}
       >
-        <Scene
-          targetSphere={targetSphere}
-          setTargetSphere={setTargetSphere}
-          clickmesh={clickmesh}
-          setClickmesh={setClickmesh}
-          setindex={setIndex}
-          index={index}
-
-        />
-
-
-
+        <Suspense fallback={<CanvasLoader />}>
+          <Scene
+            targetSphere={targetSphere}
+            setTargetSphere={setTargetSphere}
+            clickmesh={clickmesh}
+            setClickmesh={setClickmesh}
+            setindex={setIndex}
+            index={index}
+          />
+        </Suspense>
       </Canvas>
+      
       <AnimatePresence>
         {index !== -1 && (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 100 }}   // Slide in from bottom
-            animate={{ opacity: 1, y: 0 }}     // Fade and slide to position
-            exit={{ opacity: 0, y: -100 }}     // Slide out to top
+            initial={{ opacity: 0, y: 100 }}   
+            animate={{ opacity: 1, y: 0 }}     
+            exit={{ opacity: 0, y: -100 }}     
             transition={{ duration: 0.5 }}
             style={{
               position: 'absolute',
@@ -124,7 +185,6 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
-
     </>
   );
 }

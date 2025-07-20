@@ -1,26 +1,24 @@
 import { useEffect } from 'react';
 import { useThree } from '@react-three/fiber';
-import * as THREE from 'three';
+import { useCubeTexture } from '@react-three/drei';
 
 export function SpaceSkybox() {
   const { scene } = useThree();
-  // const [cubeTexture, setCubeTexture] = useState<THREE.CubeTexture | null>(null);
-  // console.log(cubeTexture)
-
+  
+  // Use the useCubeTexture hook which works with Suspense
+  const cubeTexture = useCubeTexture(
+    [
+      'px.jpg', 'nx.jpg', 
+      'py.jpg', 'ny.jpg', 
+      'pz.jpg', 'nz.jpg'
+    ],
+    { path: '/SpaceTextures/' }
+  );
+  
   useEffect(() => {
-    const loader = new THREE.CubeTextureLoader();
-    const texture = loader.load([
-      '/SpaceTextures/px.jpg',
-      '/SpaceTextures/nx.jpg',
-      '/SpaceTextures/py.jpg',
-      '/SpaceTextures/ny.jpg',
-      '/SpaceTextures/pz.jpg',
-      '/SpaceTextures/nz.jpg',
-    ], () => {
-      scene.background = texture;
-      // setCubeTexture(texture);
-    });
-  }, [scene]);
+    // Set the scene background
+    scene.background = cubeTexture;
+  }, [scene, cubeTexture]);
 
   return null;
 }
