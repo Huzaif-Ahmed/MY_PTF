@@ -5,7 +5,8 @@ import { Scene } from './components/Scene';
 import { useState, useEffect, Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Html, useProgress } from '@react-three/drei'; // Import Html
-
+import { Stats } from '@react-three/drei';
+import PageRouter from './components/MyPages/PageRouter';
 import './App.css';
 
 // Custom loader component inside the Canvas
@@ -94,7 +95,7 @@ export default function App() {
 
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
-  
+
   useEffect(() => {
     if (targetSphere) {
       console.log("Modal index:", index);
@@ -137,7 +138,9 @@ export default function App() {
           toneMapping: THREE.ACESFilmicToneMapping,
         }}
         dpr={1}
+      // frameloop="demand" 
       >
+        <Stats />
         <Suspense fallback={<CanvasLoader />}>
           <Scene
             targetSphere={targetSphere}
@@ -149,14 +152,15 @@ export default function App() {
           />
         </Suspense>
       </Canvas>
-      
+
+
       <AnimatePresence>
         {index !== -1 && (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 100 }}   
-            animate={{ opacity: 1, y: 0 }}     
-            exit={{ opacity: 0, y: -100 }}     
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.5 }}
             style={{
               position: 'absolute',
@@ -171,17 +175,31 @@ export default function App() {
               zIndex: 1000,
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
               boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
               backdropFilter: 'blur(4px)',
+              overflowY: 'auto',
+              scrollbarWidth: 'none',
             }}
           >
-            <h2 style={{ marginBottom: '15px', fontSize: '2rem' }}>
+            {/* <h2 style={{ marginBottom: '15px', fontSize: '2rem' }}>
               {["Profile", "Projects", "Skills", "Experience", "Education", "Contact"][index]}
             </h2>
             <p style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
               More details about this section coming soon...
             </p>
+
+            <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' ,}}>
+              {skills_data.map((skill) => (
+                <AnimatedCard
+                  key={skill.id}
+                  label={skill.name}
+                  path={skill.iconSrc}
+                />
+              ))}
+            </div>
+            <Contact /> */}
+            <PageRouter index={index} />
           </motion.div>
         )}
       </AnimatePresence>

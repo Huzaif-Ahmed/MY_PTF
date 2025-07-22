@@ -6,6 +6,7 @@ import * as THREE from 'three';
 import { Html } from '@react-three/drei';
 import { LogoMesh } from './LogoMesh';
 
+
 interface Props {
   params: {
     radii: number[];
@@ -17,10 +18,11 @@ interface Props {
   };
   sphereRefs: React.MutableRefObject<THREE.Mesh[]>;
   onSphereClick?: (mesh: THREE.Mesh) => void;
+  ind?: number | null;
  
 }
 
-export function Spheres({ params, sphereRefs, onSphereClick }: Props) {
+export function Spheres({ params, sphereRefs, onSphereClick}: Props) {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [visibleIndex, setVisibleIndex] = useState<number | null>(null);
   const hoverTimeout = useRef<any | null>(null);
@@ -91,7 +93,7 @@ export function Spheres({ params, sphereRefs, onSphereClick }: Props) {
           />
 
           {/* Hover Label */}
-          {visibleIndex === i && (
+          {visibleIndex === i &&  (
             <Html distanceFactor={10} position={[0, 1.5, 0]} center>
               <div
                 style={{

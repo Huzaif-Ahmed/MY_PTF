@@ -172,6 +172,7 @@ export function Scene(
         params={sphereParams}
         sphereRefs={sphereRefs}
         onSphereClick={setTargetSphere}
+        ind={index}
 
       />
 
