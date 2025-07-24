@@ -1,26 +1,28 @@
 // src/data/skills_data.ts
-import JavaIcon from '../assets/java.png'
-import JSIcon from '../assets/javascript.png'
-import PyIcon from '../assets/python.png'
-import CPPIcon from '../assets/cpp.png'
-import ReactIcon from '../assets/React.png'
-import NodeIcon from '../assets/nodejs.png'
-import dotnet from '../assets/dotnet.png'
-import springboot from '../assets/springboot.png'
-import tsIcon from '../assets/typescript.png'
-import MLicon from '../assets/machine-learning.png'
-import DLicon from '../assets/deep-learning.png'
-import AIicon from '../assets/Artificial-Intelligence.png'
-import golang from '../assets/golang.png'
-import sql from '../assets/sql.png'
-import mongodb from '../assets/MongoDB.png'
-import postgresSQL from '../assets/PostgresSQL.png'
-import Vitejs from '../assets/Vitejs.png'
-import AWS from '../assets/AWS.png'
-import git from '../assets/Git.png'
-import github from '../assets/Github.png'
-import githubactions from '../assets/Github-Actions.png'
-import NextjsIcon from '../assets/Nextjs.png'
+import JavaIcon from '../assets/skills/java.png'
+import JSIcon from '../assets/skills/javascript.png'
+import PyIcon from '../assets/skills/python.png'
+import CPPIcon from '../assets/skills/cpp.png'
+import ReactIcon from '../assets/skills/React.png'
+import NodeIcon from '../assets/skills/nodejs.png'
+import dotnet from '../assets/skills/dotnet.png'
+import springboot from '../assets/skills/springboot.png'
+import tsIcon from '../assets/skills/typescript.png'
+import MLicon from '../assets/skills/machine-learning.png'
+import DLicon from '../assets/skills/deep-learning.png'
+import AIicon from '../assets/skills/Artificial-Intelligence.png'
+import golang from '../assets/skills/golang.png'
+import sql from '../assets/skills/sql.png'
+import mongodb from '../assets/skills/MongoDB.png'
+import postgresSQL from '../assets/skills/PostgresSQL.png'
+import Vitejs from '../assets/skills/Vitejs.png'
+import AWS from '../assets/skills/AWS.png'
+import git from '../assets/skills/Git.png'
+import github from '../assets/skills/Github.png'
+import githubactions from '../assets/skills/Github-Actions.png'
+import NextjsIcon from '../assets/skills/Nextjs.png'
+import DockerIcon from '../assets/skills/Docker.png'
+import LinuxIcon from '../assets/skills/linux.png'
 
 export interface Skill {
     id: number
@@ -63,6 +65,8 @@ const skills_data: Skill[] = [
     { id: 19, name: "Git", iconSrc: git, category: "Others" },
     { id: 20, name: "Github", iconSrc: github, category: "Others" },
     { id: 21, name: "Github Actions", iconSrc: githubactions, category: "Others" },
+    { id: 23, name: "Docker", iconSrc: DockerIcon, category: "Others" },
+    { id: 24, name: "Linux", iconSrc: LinuxIcon, category: "Others" }
 ]
 
 export default skills_data

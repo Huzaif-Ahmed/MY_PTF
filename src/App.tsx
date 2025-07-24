@@ -168,7 +168,7 @@ export default function App() {
               right: '5%',
               width: '40vw',
               height: '80vh',
-              backgroundColor: 'rgba(0, 0, 0, 0.85)',
+              backgroundColor: 'rgba(9, 9, 9, 0.85)',
               padding: '30px',
               borderRadius: '12px',
               color: '#fff',

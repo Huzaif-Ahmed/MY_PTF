@@ -1,0 +1,185 @@
+.project-item {
+  display: flex;
+  flex-direction: row;
+  min-height: 250px;
+}
+
+@media (max-width: 768px) {
+  .project-item {
+    flex-direction: column;
+  }
+}
+
+.leftside {
+  flex: 0 0 40%;
+  overflow: hidden;
+}
+
+.project-item-pic {
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-item-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.project-item:hover .project-item-pic img {
+  transform: scale(1.05);
+}
+
+.rightside {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item-title {
+  margin-bottom: 1rem;
+}
+
+.project-item-title h3 {
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.project-tags span {
+  background: rgba(79, 91, 247, 0.2);
+  color: #7a89ff;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.project-item-desc {
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.project-item-desc p {
+  color: #b8b8b8;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.project-item-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.project-link.github {
+  background-color: #24292e;
+  color: white;
+}
+
+.project-link.demo {
+  background: linear-gradient(45deg, #4f5bf7, #9e6efe);
+  color: white;
+}
+
+.project-link:hover {
+  transform: translateY(-0px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.project-link i {
+  margin-right: 0.5rem;
+}
+
+.project-link.figma {
+  background: linear-gradient(45deg, #0acf83, #1abcfe);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-link.figma::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff7262, #f24e1e, #a259ff);
+  z-index: -1;
+  border-radius: 32px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-link.figma:hover {
+  
+
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-link.figma:hover::before {
+  opacity: 1;
+}
+
+.project-link.figma i {
+  font-size: 1.1rem;
+  margin-right: 0.6rem;
+}
+
+
+
+.project-link.research {
+  background: linear-gradient(45deg, #8e44ad, #9b59b6);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-link.research::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #6c3483, #8e44ad, #9b59b6);
+  z-index: -1;
+  border-radius: 32px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-link.research:hover {
+  /* transform: translateY(-3px); */
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-link.research:hover::before {
+  opacity: 1;
+}
+
+.project-link.research i {
+  font-size: 1.1rem;
+  margin-right: 0.6rem;
+}
