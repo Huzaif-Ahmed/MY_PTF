@@ -1,6 +1,6 @@
 // src/components/AnimatedCard.tsx
 import { motion } from 'framer-motion'
-import './AnimatedCard.css'
+import '../components/MyPages/css/AnimatedCard.css'
 // import JavaIcon from '../assets/java.png' // adjust your path
 
 interface AnimatedCardProps {

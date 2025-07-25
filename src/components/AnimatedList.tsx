@@ -2,7 +2,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import './AnimatedList.css' // We'll create this CSS file
+import './MyPages/css/AnimatedList.css' // Adjust the path as necessary
 
 interface AnimatedListProps {
     items: React.ReactNode[];
@@ -22,7 +22,7 @@ function AnimatedListItem({ item }: { item: React.ReactNode }) {
     const { ref, inView } = useInView({
         threshold: 0.1,
         triggerOnce: false,
-        rootMargin: '30% -30% -30% -30%',
+        rootMargin: '30% -30% -30% -30% ',
     });
     
     return (

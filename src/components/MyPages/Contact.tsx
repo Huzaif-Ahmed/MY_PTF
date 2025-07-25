@@ -1,7 +1,7 @@
 // make a cotact page 
 import { motion } from 'framer-motion';
 
-
+       
 
 
 
