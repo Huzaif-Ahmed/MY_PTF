@@ -1,4 +1,4 @@
-import './css/profile.css';
+import './css/Profile.css';
 import profile_pic from '../../assets/Profile/Profile_pic.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
