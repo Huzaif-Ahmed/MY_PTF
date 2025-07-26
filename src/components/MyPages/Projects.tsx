@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { AnimatedList } from "../AnimatedList";
 import projects_data from "../../metadata/projects";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
