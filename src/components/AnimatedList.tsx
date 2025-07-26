@@ -22,7 +22,7 @@ function AnimatedListItem({ item }: { item: React.ReactNode }) {
     const { ref, inView } = useInView({
         threshold: 0.1,
         triggerOnce: false,
-        rootMargin: '30% -30% -30% -30% ',
+        rootMargin: '20% -20% -20% -20% ',
     });
     
     return (

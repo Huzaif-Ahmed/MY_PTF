@@ -1,10 +1,18 @@
+import React from 'react';
 import { AnimatedList } from "../AnimatedList";
 import projects_data from "../../metadata/projects";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faGithub, 
+  faFigma 
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faExternalLinkAlt,
+  faBook
+} from '@fortawesome/free-solid-svg-icons';
 import './css/project.css';
 
-
 const Projects = () => {
-
   const projectItems = projects_data.map((project, index) => (
     <Project
       key={index}
@@ -19,22 +27,20 @@ const Projects = () => {
       ResearchLink={project.ResearchLink}
     />
   ));
- 
 
   return (
     <div className="profile-container">
-      <h2 style={{ marginBottom: '15px', fontSize: '2rem' }}>
-        Projects
-      </h2>
-
+      <h2 className="section-title">Projects</h2>
+      <p className="section-intro">
+        Here are some of my featured projects that showcase my skills and experience in
+        web development, machine learning, and creative design.
+      </p>
       <AnimatedList items={projectItems} />
     </div>
   );
 };
 
 export default Projects;
-
-
 
 interface ProjectProps {
   title: string;
@@ -71,7 +77,7 @@ const Project = ({
           <h3>{title}</h3>
           <div className="project-tags">
             {tags.map((tag, idx) => (
-              <span key={idx}>{tag}</span>
+              <span key={idx} className="technology-tag">{tag}</span>
             ))}
           </div>
         </div>
@@ -81,24 +87,22 @@ const Project = ({
         <div className='project-item-links'>
           {githubLink && (
             <a href={githubLink} className="project-link github" target="_blank" rel="noopener noreferrer">
-              <i className="fa fa-github"></i> View Source
+              <FontAwesomeIcon icon={faGithub} /> View Source
             </a>
           )}
           {(liveDemo || demoLink) && (
             <a href={liveDemo || demoLink} className="project-link demo" target="_blank" rel="noopener noreferrer">
-              <i className="fa fa-external-link"></i> Live Demo
+              <FontAwesomeIcon icon={faExternalLinkAlt} /> Live Demo
             </a>
           )}
-          {
-            figmaLink && (
-              <a href={figmaLink} className="project-link figma" target="_blank" rel="noopener noreferrer">
-                <i className="fa fa-figma"></i> View Figma Design
-              </a>
-            )
-          }
+          {figmaLink && (
+            <a href={figmaLink} className="project-link figma" target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFigma} /> View Figma Design
+            </a>
+          )}
           {ResearchLink && (
             <a href={ResearchLink} className="project-link research" target="_blank" rel="noopener noreferrer">
-              <i className="fa fa-book"></i> View Research Paper
+              <FontAwesomeIcon icon={faBook} /> View Research Paper
             </a>
           )}
         </div>
@@ -106,4 +110,3 @@ const Project = ({
     </div>
   );
 };
-
